@@ -1,14 +1,17 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import Input from '@/components/input';
 import Chip from '@/components/chip';
 import { USERS } from '@/constants/data';
 
 export default function Home() {
+  const lastChipRef = useRef<HTMLDivElement>(null);
+
   const [users, setUsers] = useState<User[]>(USERS);
   const [selectedUsers, setSelectedUsers] = useState<User[]>([]);
   const [input, setInput] = useState<string>('');
+  const [focus, setFocus] = useState<boolean>(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
@@ -30,6 +33,12 @@ export default function Home() {
     setUsers([...users, user]);
   };
 
+  const handleBackspace = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Backspace' && !input) {
+      lastChipRef?.current?.focus();
+    }
+  };
+
   const filteredUsers = users.filter((user) =>
     user.name.toLowerCase().startsWith(input.toLowerCase())
   );
@@ -39,8 +48,9 @@ export default function Home() {
       <h1 className="text-2xl font-bold mb-8">Pick Users</h1>
       <div className="relative w-full lg:w-1/2 flex items-center gap-2 border-b-2 flex-wrap">
         {selectedUsers.length > 0 &&
-          selectedUsers?.map((user) => (
+          selectedUsers?.map((user, index) => (
             <Chip
+              ref={index === selectedUsers.length - 1 ? lastChipRef : null}
               name={user.name}
               key={user.email}
               handleCancel={() => handleCancel(user)}
@@ -52,9 +62,11 @@ export default function Home() {
             placeholder="Add new user"
             value={input}
             onChange={handleChange}
+            onKeyDown={handleBackspace}
+            onFocus={() => setFocus(true)}
           />
 
-          {filteredUsers.length > 0 && (
+          {focus && filteredUsers.length > 0 && (
             <div className="absolute top-12 w-max bg-gray-100 p-1 rounded-lg shadow-lg flex flex-col max-h-[200px] overflow-y-scroll">
               {filteredUsers.map((user) => (
                 <div

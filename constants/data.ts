@@ -1,10 +1,42 @@
 export const USERS = [
-  { name: 'User1', email: 'user1@test.com' },
-  { name: 'TestUser2', email: 'user2@test.com' },
-  { name: 'User3', email: 'user3@test.com' },
-  { name: 'User4', email: 'user4@test.com' },
-  { name: 'User5', email: 'user5@test.com' },
-  { name: 'User6', email: 'user6@test.com' },
-  { name: 'User7', email: 'user7@test.com' },
-  { name: 'User8', email: 'user8@test.com' },
+  {
+    name: 'Erin Small',
+    email: 'tortor.nunc.commodo@yahoo.edu',
+  },
+  {
+    name: 'Ahmed Barber',
+    email: 'mauris.a@google.ca',
+  },
+  {
+    name: 'Willow Slater',
+    email: 'fusce.dolor@outlook.net',
+  },
+  {
+    name: 'Jillian Cooley',
+    email: 'proin.mi.aliquam@icloud.ca',
+  },
+  {
+    name: 'Chandler Kirk',
+    email: 'turpis.in@outlook.net',
+  },
+  {
+    name: 'Nan',
+    email: 'nraisbeck0@bbb.org',
+  },
+  {
+    name: 'Linell',
+    email: 'lbricket1@livejournal.com',
+  },
+  {
+    name: 'Lek',
+    email: 'llegallo2@mediafire.com',
+  },
+  {
+    name: 'Sidonnie',
+    email: 'spieracci3@hatena.ne.jp',
+  },
+  {
+    name: 'Britteny',
+    email: 'babrashkov4@pcworld.com',
+  },
 ];
